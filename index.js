@@ -37,9 +37,6 @@ const nums = [3, 2, 3, 1, 2, 4, 5, 5, 6, 7, 7, 8, 2, 3, 1, 1, 1, 10, 11, 5, 6, 2
 const k = 10;
 
 console.log(topKFrequent(nums, k));
+// Expected output: [1,2,5,3,6,7,4,8,10,11]
 
 // the issue is the new low is being too high so it doesnt solve the of unsorted values (low freq to high freq)
-
-// Solution:
-// 1. loop to sort freq
-// 2. loop to grab top k frequencies
