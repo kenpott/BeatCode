@@ -8,16 +8,14 @@ function topKFrequent(nums, k) {
   for (let i = 0; i < nums.length; i++) {
     freqMap[nums[i]] = (freqMap[nums[i]] || 0) + 1;
 
-    if (freqMap[nums[i]] >= low) {
-      if (topKFreq.length > k) {
-        // issue is here
+    if (freqMap[nums[i]] >= low&& !topKFreq.includes(nums[i])) {
+      if (topKFreq.length >= k) {
         topKFreq.shift();
       }
       // i have to sort while pushing values into the array (e.g. if statement)
       if (freqMap[nums[i]] < high) {
         topKFreq.unshift(nums[i]);
       } else {
-        // must be greater than the high
         topKFreq.push(nums[i]);
       }
     }
@@ -32,10 +30,16 @@ function topKFrequent(nums, k) {
     }
     console.log(freqMap, topKFreq, low, high);
   }
-  return new Set(top);
+  return topKFreq;
 }
 
-const nums = [3, 0, 1, 0];
-const k = 1;
+const nums = [3, 2, 3, 1, 2, 4, 5, 5, 6, 7, 7, 8, 2, 3, 1, 1, 1, 10, 11, 5, 6, 2, 4, 7, 8, 5, 6];
+const k = 10;
 
 console.log(topKFrequent(nums, k));
+
+// the issue is the new low is being too high so it doesnt solve the of unsorted values (low freq to high freq)
+
+// Solution:
+// 1. loop to sort freq
+// 2. loop to grab top k frequencies
