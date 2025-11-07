@@ -5,6 +5,7 @@ class Solution {
      * @return {number}
      */
     characterReplacement(s, k) {
+        let startingIndex = 0;
         let subString = [];
         let dupe = 0;
         let longestSubString = 0;
@@ -14,12 +15,15 @@ class Solution {
         }
         longestSubString = subString.length;
         for (let j = 1; j < s.length; j++) {
-            subString.push(s[j]);
+            console.log(subString);
+            subString.push(s[j]); 
             let temp = new Set(subString);
-            if (temp.size !== 1) {
+            console.log("e", s.split(startingIndex, j));
+            if (temp.size !== s.split(startingIndex, j).length) { // account for chars
                 dupe++
                 if (dupe > k) {
                     subString.shift();
+                    startingIndex++;
                 }
             }
             longestSubString = Math.max(longestSubString, subString.length);
