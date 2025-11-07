@@ -17,8 +17,9 @@ class Solution {
             console.log(subString);
             subString.push(s[j]); 
             let temp = new Set(subString); // although i am trying to detect dupes if there are multiple chars then it wont work.
-            if () {
-                dupe++
+            if (temp.size !== 1) {
+                dupe++;
+                subString[subString.length - 1] = temp[0];
                 if (dupe > k) {
                     subString.shift();
                 }
